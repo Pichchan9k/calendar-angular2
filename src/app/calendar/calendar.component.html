@@ -4,8 +4,8 @@
     <li class="prev">❮</li>
     <li class="next">❯</li>
     <li style="text-align:center" >
-      {{current_month_name}}<br>
-      <span style="font-size:18px">{{current_year}}</span>
+      {{ current_month_name }}<br>
+      <span style="font-size:18px">{{ current_year }}</span>
     </li>
   </ul>
 </div>
@@ -22,5 +22,5 @@
 
 <ul class="days">
   <li *ngFor="let space of space_days"></li>
-  <li *ngFor="let day of days"><span [class.active]="day==current_day">{{day | calendar}} </span></li>
+  <li *ngFor="let day of days" ><span [class.active]="day==current_day">{{ day | calendar:events }} </span></li>
 </ul>

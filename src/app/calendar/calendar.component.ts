@@ -14,20 +14,24 @@ const MONTH = {
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
+
 export class CalendarComponent implements OnInit {
   @Input('day')
   nowDate:Date
-  sqlDate:string
+  
   firstDay:number
-  date_name:string
   current_day:number
   current_month:number
-  current_month_name:string
   current_year:number
+
+  sqlDate:string
+  date_name:string
+  current_month_name:string
+ 
   days:Array<number>
   space_days:Array<any>
-
   events:Array<CalendarEvent>
+
   constructor() { 
     this.events = [
       new CalendarEvent(new Date("2016-09-21"),new Date("2016-09-23"),"Thailand","stay in thailand"),
@@ -40,7 +44,7 @@ export class CalendarComponent implements OnInit {
       this.nowDate = new Date()
 
     this.date_name = this.nowDate.toISOString().substring(0,10) //like 2016-09-30
-    this.sqlDate =  this.nowDate.toISOString().substring(0, 8) + "01"
+    this.sqlDate =  this.nowDate.toISOString().substring(0, 8) + "01" //like 2016-09-
     this.firstDay = new Date(this.sqlDate).getDay()
     this.current_day = this.nowDate.getDate()
     this.current_month = this.nowDate.getMonth()
@@ -51,7 +55,7 @@ export class CalendarComponent implements OnInit {
       
     this.space_days = []
 
-    for (let i = 1; i <= this.nowDate.getDay(); i++)
+    for (let i = 1; i <= this.firstDay; i++)
       this.space_days.push("")
 
     this.current_month_name = MONTH.MONTH_NAMES[this.current_month]
